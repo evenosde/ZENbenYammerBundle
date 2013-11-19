@@ -5,24 +5,26 @@ namespace ZENben\Bundle\YammerBundle\Buzz\Listener;
 use Buzz\Message\MessageInterface;
 use Buzz\Message\RequestInterface;
 use Buzz\Listener\ListenerInterface;
+use Buzz\Util\Url;
 
 class YammerListener implements ListenerInterface {
 
-    private $username;
-    private $password;
+    private $token;
     protected $apiBaseUrl;
 
-    public function __construct($apiBaseUrl, $username, $password) {
+    public function __construct($apiBaseUrl, $token) {
         $this->apiBaseUrl = $apiBaseUrl;
-        $this->username = $username;
-        $this->password = $password;
+        $this->token = $token;
     }
 
     public function preSend(RequestInterface $request) {
         $raw = $request->getContent();
+        $url = new Url($this->apiBaseUrl . $request->getResource() . '.json');
+
         $request->setContent(json_encode($raw));
-        $request->setResource($this->apiBaseUrl . $request->getResource() . '.json');
-        $request->addHeader('Authorization: Basic ' . base64_encode($this->username . ':' . $this->password));
+        $request->setHost($url->getHost());
+        $request->setResource($url->getResource());
+        $request->addHeader('Authorization: Bearer ' . $this->token);
         $request->addHeader('Accept: application/json');
         $request->addHeader('Content-Type: application/json');
     }
@@ -33,10 +35,8 @@ class YammerListener implements ListenerInterface {
         
         if ( ! ($response->isInformational() || $response->isSuccessful() ) ) {
             throw new \Exception(
-                sprintf('%s %s: %s', 
-                    $response->getStatusCode(), 
-                    $content['Status'], 
-                    $content['Message']
+                sprintf('%s', //TODO: extend
+                    $response->getStatusCode()
                 )
             );
         }
