@@ -1,0 +1,47 @@
+{
+    "name":        "zenben/yammer-bundle",
+    "type":        "symfony-bundle",
+    "description": "Yammer API implementation with some helpers",
+    "keywords":    [
+        "yammer"
+    ],
+    "homepage":    "https://github.com/ZEN-ben/ZENbenYammerBundle",
+    "license":     "MIT",
+
+    "authors": [
+        {
+            "name": "Wybren Koelmans",
+            "email": "wybrenkoelmans@gmail.com"
+        },
+        {
+            "name": "Contributors",
+            "homepage": "https://github.com/ZEN-ben/ZENbenYammerBundle/contributors"
+        }
+    ],
+
+    "require": {
+        "php":                          ">=5.4",
+        "symfony/framework-bundle":     "~2.3",
+        "kriswallsmith/buzz":           "~0.7"
+    },
+
+    "require-dev": {
+    
+    },
+
+    "suggest": {
+    
+    },
+
+    "autoload": {
+        "psr-0": {
+            "ZENben\\Bundle\\YammerBundle": ""
+        }
+    },
+
+    "target-dir": "ZENben/Bundle/YammerBundle",
+
+    "extra": {
+        
+    }
+}

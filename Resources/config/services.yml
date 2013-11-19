@@ -1,0 +1,9 @@
+parameters:
+    
+    
+services:
+    yammer:
+        class: ZENben\Bundle\YammerBundle\Service\YammerService
+        arguments:
+            - '@buzz'
+            - %yammer%
