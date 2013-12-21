@@ -31,14 +31,12 @@ class YammerListener implements ListenerInterface {
 
     public function postSend(RequestInterface $request, MessageInterface $response) {
         $raw = $response->getContent();
-        $content = json_decode($raw,true);
-        
-        if ( ! ($response->isInformational() || $response->isSuccessful() ) ) {
-            throw new \Exception(
-                sprintf('%s', //TODO: extend
-                    $response->getStatusCode()
-                )
-            );
+        $content = json_decode($raw, true);
+        if ($response->getStatusCode() === 404) {
+            throw new NotFoundHttpException(sprintf('%s %s: %s', $response->getStatusCode(), $response->getReasonPhrase(), $content['message']));
+        }
+        if (!($response->isInformational() || $response->isSuccessful())) {
+            throw new \Exception(sprintf('%s %s: %s', $response->getStatusCode(), $response->getReasonPhrase(), $content['message']));
         }
         $response->setContent($content);
     }

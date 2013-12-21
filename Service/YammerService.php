@@ -9,6 +9,7 @@ use ZENben\Bundle\YammerBundle\Model\Group;
 class YammerService
 {
     protected $browser;
+    protected $defaultGroupId;
     
     public function __construct(Browser $browser, $config) {
         $browser->addListener(
@@ -18,10 +19,13 @@ class YammerService
             )
         );
         $this->browser = $browser;
+        $this->defaultGroupId = $config['default_group_id'];
     }
 
     public function postMessage($message, $group = null) {
-        if ($group instanceof Group) {
+        if ($group === null) {
+            $group = $this->defaultGroupId;
+        } else if ($group instanceof Group) {
             $group = $group->getId();
         }
         $this->browser->post('/messages', [], [
