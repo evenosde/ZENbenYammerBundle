@@ -1,26 +1,26 @@
 {
-    "name":        "zenben/yammer-bundle",
+    "name":        "evenos/zenben-yammer-bundle",
     "type":        "symfony-bundle",
-    "description": "Yammer API implementation with some helpers",
+    "description": "Yammer API implementation with some helpers, mod by evenos",
     "keywords":    [
         "yammer"
     ],
-    "homepage":    "https://github.com/ZEN-ben/ZENbenYammerBundle",
+    "homepage":    "https://github.com/evenosde/ZENbenYammerBundle",
     "license":     "MIT",
 
     "authors": [
         {
-            "name": "Wybren Koelmans",
-            "email": "wybrenkoelmans@gmail.com"
+            "name": "Manuel Schumacher",
+            "email": "manuel.schumacher@evenos.de"
         },
         {
             "name": "Contributors",
-            "homepage": "https://github.com/ZEN-ben/ZENbenYammerBundle/contributors"
+            "homepage": "https://github.com/evenosde/ZENbenYammerBundle/contributors"
         }
     ],
 
     "require": {
-        "php":                          ">=5.4",
+        "php":                          ">=5.3",
         "symfony/framework-bundle":     "~2.3",
         "kriswallsmith/buzz":           "~0.7"
     },
