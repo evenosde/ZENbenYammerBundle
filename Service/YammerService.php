@@ -28,16 +28,16 @@ class YammerService
         } else if ($group instanceof Group) {
             $group = $group->getId();
         }
-        $this->browser->post('/messages', [], [
+        $this->browser->post('/messages', array(), array(
             'body' => $message,
             'group_id' => $group
-        ]);
+        ));
     }
 
     public function getGroups()
     {
         $groupsJson = $this->browser->get('/groups')->getContent();
-        $groups = [];
+        $groups = array();
         foreach ($groupsJson as $groupsJson) {
             $groups[] = new Group(
                 $groupsJson['id'],

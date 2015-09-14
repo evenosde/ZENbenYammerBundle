@@ -2,6 +2,8 @@ parameters:
     
     
 services:
+    buzz:
+        class: Buzz\Browser
     yammer:
         class: ZENben\Bundle\YammerBundle\Service\YammerService
         arguments:
